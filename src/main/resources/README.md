@@ -1,7 +1,6 @@
 # Java Concepts With Examples
 
 This repository is a comprehensive reference for core and advanced Java concepts, including hands-on code examples categorized by topic. It is intended to serve as a long-term learning and showcase resource.
-
 ---
 
 ## 📦 Package Structure
