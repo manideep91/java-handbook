@@ -1,0 +1,9 @@
+/**
+ * | Interface             | Description                      |
+ * | --------------------- | -------------------------------- |
+ * | `Function<T, R>`      | Takes `T`, returns `R`           |
+ * | `Predicate<T>`        | Takes `T`, returns `boolean`     |
+ * | `Consumer<T>`         | Takes `T`, returns nothing       |
+ * | `Supplier<T>`         | Takes nothing, returns `T`       |
+ * | `BiFunction<T, U, R>` | Takes two inputs, returns result |
+ */
