@@ -95,5 +95,24 @@ can be interrupted by another thread, causing an update to be lost.
 |               | allowing a thread to acquire a lock with   | which can cause deadlocks if    |
 |               | reentrant (reacquire) capability and       | not properly released; more     |
 |               | options like tryLock and fairness policies.| complex than synchronized.      |
-
 -------------------------------------------------------------------------------------------------
+
+##  7 ReentrantLock
+---------------------------------------------------------------------------------------------------------
+| Feature                 | Description                                | Benefit                        |
+|-----------------------  |--------------------------------------------|--------------------------------|
+| **tryLock()**           | Tries to get lock immediately without wait.| Avoids blocking if busy.       |
+|                         | Returns true if successful, else false.    | Enables alternate actions.     |
+| **lockInterruptibly()** | Lets thread give up waiting if interrupted.| Supports cancellation.         |
+| **Fairness policy**     | Fair lock grants access in request order.  | Prevents starvation.           |
+| **Multiple Conditions** | Allows multiple wait/notify sets per lock. | Enables complex sync logic.    |
+---------------------------------------------------------------------------------------------------------
+
+##  8 synchronized VS ReentrantLock
+| Feature              | `synchronized`         | `ReentrantLock` |
+| -------------------- | ---------------------- | --------------- |
+| Explicit lock/unlock | No (implicit by block) | Yes             |
+| tryLock()            | No                     | Yes             |
+| lockInterruptibly()  | No                     | Yes             |
+| Fairness policy      | No                     | Yes             |
+| Multiple Conditions  | No                     | Yes             |
