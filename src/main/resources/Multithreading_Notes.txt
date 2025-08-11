@@ -1,0 +1,88 @@
+1️⃣ Thread Lifecycle
+----------------------------------------------------------------------------------------------------------
+| State                            | Meaning                                                             |
+| -------------------------------- | ------------------------------------------------------------------- |
+| **NEW**                          | Thread object created but **not started** (`new Thread()`).         |
+| **RUNNABLE**                     | Eligible to run, waiting for CPU scheduling.                        |
+| **RUNNING**                      | Actually executing on the CPU (only one thread per core at a time). |
+| **WAITING** / **TIMED\_WAITING** | Temporarily not running (waiting for notify/sleep/join).            |
+| **TERMINATED**                   | Finished execution (cannot be restarted).                           |
+----------------------------------------------------------------------------------------------------------
+Thread t = new Thread(() -> System.out.println("Hello"));
+System.out.println(t.getState()); // NEW
+t.start();
+System.out.println(t.getState()); // RUNNABLE or RUNNING
+
+2️⃣ Runnable vs Callable
+---------------------------------------------------------------------------------
+| Feature      | Runnable                        | Callable                     |
+| ------------ | ------------------------------- | ---------------------------- |
+| Return value | No (`void run()`)               | Yes (`V call()`)             |
+| Exception    | Cannot throw checked exceptions | Can throw checked exceptions |
+| Usage        | Simple tasks without result     | Tasks with a result          |
+---------------------------------------------------------------------------------
+
+Examples :
+// Runnable
+Runnable task1 = () -> System.out.println("No return");
+new Thread(task1).start();
+
+// Callable
+Callable<Integer> task2 = () -> 42;
+ExecutorService ex = Executors.newSingleThreadExecutor();
+Future<Integer> f = ex.submit(task2);
+System.out.println(f.get()); // 42
+ex.shutdown();
+
+> join() → Wait for another thread to finish.
+> yield() → Give chance to others now.
+> sleep() → Pause yourself for a time.
+
+3️⃣ join()
+Purpose: Make the calling thread wait until the target thread finishes.
+Thread t1 = new Thread(() -> {
+    for (int i = 0; i < 3; i++) System.out.println("T1: " + i);
+});
+t1.start();
+t1.join(); // Main waits for t1
+System.out.println("Main continues");
+
+4️⃣ yield()
+Purpose: Suggest to the scheduler to give other threads a chance.
+Note: It’s just a hint, may not work always.
+Thread t = new Thread(() -> {
+    for (int i = 0; i < 5; i++) {
+        System.out.println(Thread.currentThread().getName());
+        Thread.yield();
+    }
+});
+t.start();
+
+5️⃣ sleep()
+Purpose: Pause current thread for given time (in ms). Keeps the lock if it already holds one.
+Example:
+System.out.println("Start");
+Thread.sleep(1000);
+System.out.println("1 second later");
+
+6️⃣ Race Condition
+A race condition happens when multiple threads are trying to access and modify a shared resource (like a variable) at the same time.
+This leads to unpredictable and incorrect results because a multi-step operation (like counter++)
+can be interrupted by another thread, causing an update to be lost.
+
+------------------------------------------------------------------------------------------------
+| Concept       | How It Works                               | Drawbacks                       |
+|---------------|--------------------------------------------|---------------------------------|
+
+| synchronized  | Locks an object, ensuring only one thread  | Can create a performance        |
+|               | can execute a critical section of code at  | bottleneck as threads are        |
+|               | a time.                                    | forced to wait for the lock.    |
+
+| volatile      | Guarantees reads and writes go directly to | Does not make operations atomic.|
+|               | main memory, avoiding CPU caches.          | A multi-step operation can still|
+|               |                                            | be interrupted.                 |
+
+| AtomicInteger | Uses low-level, lock-free CPU instructions | It is a specialized tool and    |
+|               | (like CAS) to perform operations as a      | only works for simple,          |
+|               | single, indivisible unit.                  | single-variable operations.     |
+------------------------------------------------------------------------------------------------
