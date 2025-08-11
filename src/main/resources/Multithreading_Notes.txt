@@ -70,7 +70,7 @@ A race condition happens when multiple threads are trying to access and modify a
 This leads to unpredictable and incorrect results because a multi-step operation (like counter++)
 can be interrupted by another thread, causing an update to be lost.
 
-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
 | Concept       | How It Works                               | Drawbacks                       |
 |---------------|--------------------------------------------|---------------------------------|
 
@@ -83,6 +83,17 @@ can be interrupted by another thread, causing an update to be lost.
 |               |                                            | be interrupted.                 |
 
 | AtomicInteger | Uses low-level, lock-free CPU instructions | It is a specialized tool and    |
-|               | (like CAS) to perform operations as a      | only works for simple,          |
-|               | single, indivisible unit.                  | single-variable operations.     |
-------------------------------------------------------------------------------------------------
+|               | (like CAS) to perform atomic get-increment-| only works for simple,          |
+|               | update operations as a single, indivisible | single-variable operations.     |
+|               | unit of work.                              |                                |
+
+| ThreadLocal   | Gives each thread its own private copy of  | Only useful when each thread    |
+|               | a variable, avoiding race conditions on    | needs unique data not shared    |
+|               | variables that shouldn't be shared.         | across threads.                 |
+
+| ReentrantLock | Provides explicit lock/unlock control by   | Requires manual unlocking,      |
+|               | allowing a thread to acquire a lock with   | which can cause deadlocks if    |
+|               | reentrant (reacquire) capability and       | not properly released; more     |
+|               | options like tryLock and fairness policies.| complex than synchronized.      |
+
+-------------------------------------------------------------------------------------------------

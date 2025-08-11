@@ -2,7 +2,7 @@ package org.mmdworks.multithreading.basics;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class MT_Basics_03_CreateRaceCondition_Fixed {
+public class MT_03_RaceCondition_AtomicInteger {
 
     // 1. Change the variable type to AtomicInteger
     private AtomicInteger counter = new AtomicInteger(0);
@@ -17,7 +17,7 @@ public class MT_Basics_03_CreateRaceCondition_Fixed {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        MT_Basics_03_CreateRaceCondition_Fixed demo = new MT_Basics_03_CreateRaceCondition_Fixed();
+        MT_03_RaceCondition_AtomicInteger demo = new MT_03_RaceCondition_AtomicInteger();
 
         Runnable task = () -> {
             for (int i = 0; i < 10_000; i++) {

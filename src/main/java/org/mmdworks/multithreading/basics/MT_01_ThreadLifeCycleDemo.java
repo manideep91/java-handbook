@@ -2,7 +2,7 @@ package org.mmdworks.multithreading.basics;
 
 import java.util.concurrent.*;
 
-public class MT_Basics_01_ThreadLifeCycleDemo {
+public class MT_01_ThreadLifeCycleDemo {
 
     // 1. Runnable task
     static class MyRunnable implements Runnable {

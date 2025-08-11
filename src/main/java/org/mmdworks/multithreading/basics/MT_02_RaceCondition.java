@@ -1,6 +1,6 @@
 package org.mmdworks.multithreading.basics;
 
-public class MT_Basics_02_CreateRaceCondition {
+public class MT_02_RaceCondition {
     private  int counter = 0;
 
     public  void increment() {
@@ -12,7 +12,7 @@ public class MT_Basics_02_CreateRaceCondition {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        MT_Basics_02_CreateRaceCondition demo = new MT_Basics_02_CreateRaceCondition();
+        MT_02_RaceCondition demo = new MT_02_RaceCondition();
 
         Runnable task = () -> {
             for (int i = 0; i < 10_000; i++) {
