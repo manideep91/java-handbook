@@ -116,3 +116,24 @@ can be interrupted by another thread, causing an update to be lost.
 | lockInterruptibly()  | No                     | Yes             |
 | Fairness policy      | No                     | Yes             |
 | Multiple Conditions  | No                     | Yes             |
+
+
+completablefuture-mastery/
+│── README.md
+│── src/
+│   └── main/java/com/manideep/cf/
+│       ├── basics/
+│       │    ├── RunVsSupply.java
+│       │    └── Transformations.java
+│       ├── errorhandling/
+│       │    ├── ExceptionallyDemo.java
+│       │    └── HandleDemo.java
+│       ├── advanced/
+│       │    ├── ParallelApiCalls.java
+│       │    ├── RetryWithBackoff.java
+│       │    ├── TimeoutDemo.java
+│       │    └── CustomExecutorDemo.java
+│       └── exercises/
+│            ├── UserProfileAggregator.java
+│            ├── FlakyApiRetry.java
+│            └── TimeoutFallback.java
