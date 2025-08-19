@@ -1,4 +1,4 @@
-package org.mmdworks.multithreading;
+package org.mmdworks.multithreading.processBulk;
 
 import java.util.ArrayList;
 import java.util.List;

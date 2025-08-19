@@ -2,7 +2,7 @@ package org.mmdworks.multithreading.interCommunication;
 
 import java.util.concurrent.CompletableFuture;
 
-public class PingPongAsyncCoordinator {
+public class IC_01_PingPong_Unordered {
 
     public static void main(String[] args) {
 
